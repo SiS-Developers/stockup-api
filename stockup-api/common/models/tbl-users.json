@@ -1,0 +1,43 @@
+{
+  "name": "tblUsers",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "IsAdmin": {
+      "type": "number",
+      "id": true,
+      "required": true
+    },
+    "Emp_id": {
+      "type": "string",
+      "id": true,
+      "required": true
+    },
+    "First": {
+      "type": "string"
+    },
+    "Last": {
+      "type": "string"
+    },
+    "Email": {
+      "type": "string"
+    },
+    "Password": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

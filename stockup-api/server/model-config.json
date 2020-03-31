@@ -38,5 +38,9 @@
   "tblTickets": {
     "dataSource": "db",
     "public": true
+  },
+  "tblUsers": {
+    "dataSource": "db",
+    "public": true
   }
 }

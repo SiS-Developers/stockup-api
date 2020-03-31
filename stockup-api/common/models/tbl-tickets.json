@@ -8,18 +8,18 @@
   "properties": {
     "Game": {
       "type": "number",
-      "required": true,
-      "id": true
+      "id": true,
+      "required": true
     },
     "Pack": {
       "type": "number",
-      "required": true,
-      "id": true
+      "id": true,
+      "required": true
     },
     "Nbr": {
       "type": "number",
-      "required": true,
-      "id": true
+      "id": true,
+      "required": true
     },
     "Name": {
       "type": "string"
@@ -52,6 +52,13 @@
   },
   "validations": [],
   "relations": {},
-  "acls": [],
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$unauthenticated",
+      "permission": "DENY"
+    }
+  ],
   "methods": {}
 }
