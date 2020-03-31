@@ -1,0 +1,12 @@
+{
+  "db": {
+    "host": "db431.cjeog1zo7yyf.us-east-2.rds.amazonaws.com",
+    "port": 3306,
+    "url": "mysql://master431:masterhot1@db431.cjeog1zo7yyf.us-east-2.rds.amazonaws.com:3306/SIS",
+    "database": "SIS",
+    "password": "masterhot1",
+    "name": "db",
+    "user": "master431",
+    "connector": "mysql"
+  }
+}

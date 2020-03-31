@@ -1,0 +1,57 @@
+{
+  "name": "tblTickets",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "Game": {
+      "type": "number",
+      "required": true,
+      "id": true
+    },
+    "Pack": {
+      "type": "number",
+      "required": true,
+      "id": true
+    },
+    "Nbr": {
+      "type": "number",
+      "required": true,
+      "id": true
+    },
+    "Name": {
+      "type": "string"
+    },
+    "Store": {
+      "type": "string"
+    },
+    "Date": {
+      "type": "date",
+      "required": true
+    },
+    "Activated": {
+      "type": "number"
+    },
+    "LoadedPack": {
+      "type": "number"
+    },
+    "Price": {
+      "type": "number"
+    },
+    "Start_Inv": {
+      "type": "number"
+    },
+    "End_Inv": {
+      "type": "number"
+    },
+    "Emp_id": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
