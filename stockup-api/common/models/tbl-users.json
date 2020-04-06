@@ -8,12 +8,10 @@
   "properties": {
     "IsAdmin": {
       "type": "number",
-      "id": true,
       "required": true
     },
     "Emp_id": {
       "type": "string",
-      "id": true,
       "required": true
     },
     "First": {
@@ -23,6 +21,7 @@
       "type": "string"
     },
     "Email": {
+      "id": true,
       "type": "string"
     },
     "Password": {

@@ -29,6 +29,7 @@
     },
     "Date": {
       "type": "date",
+      "id": true,
       "required": true
     },
     "Activated": {
