@@ -1,5 +1,3 @@
-'use strict';
+"use strict";
 
-module.exports = function(Tbltickets) {
-
-};
+module.exports = function (Tbltickets) {};
