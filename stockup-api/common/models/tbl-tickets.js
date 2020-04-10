@@ -24,7 +24,6 @@ module.exports = function (Tbltickets) {
   };
 
   Tbltickets.remoteMethod("getEndDayPrevDayTickets", {
-    accepts: {},
     returns: { arg: "result", type: "any", root: "true" },
     http: { path: "/getEndDayPrevDayTickets", verb: "get" },
   });
