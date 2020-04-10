@@ -10,6 +10,53 @@ var dataSource = new DataSource({
   password: "masterhot1",
 });
 module.exports = function (Tbltickets) {
+  Tbltickets.activateTicket = function (Game, Pack, Nbr, Emp_id, cb) {
+    var sql =
+      "CALL `activatePack`(" +
+      Game +
+      "," +
+      Pack +
+      "," +
+      Nbr +
+      "," +
+      Emp_id +
+      ");";
+    dataSource.connector.execute(sql, function (err, data) {
+      if (err) {
+        console.log("Error:", err);
+      }
+      console.log("datum:", data);
+      cb(null, data);
+    });
+  };
+
+  Tbltickets.remoteMethod("activateTicket", {
+    accepts: [
+      {
+        arg: "Game",
+        type: "string",
+        required: "true",
+      },
+      {
+        arg: "Pack",
+        type: "string",
+        required: "true",
+      },
+      {
+        arg: "Nbr",
+        type: "string",
+        required: "true",
+      },
+      {
+        arg: "Emp_id",
+        type: "string",
+        required: "true",
+      },
+    ],
+    returns: { arg: "result", type: "any", root: "true" },
+    http: { path: "/activateTicket", verb: "post" },
+  });
+
   Tbltickets.getEndDayPrevDayTickets = function (cb) {
     dataSource.connector.execute("CALL `getEndDayPrevDayTickets`();", function (
       err,
