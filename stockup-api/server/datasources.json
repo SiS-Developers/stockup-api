@@ -7,6 +7,6 @@
     "password": "masterhot1",
     "name": "db",
     "user": "master431",
-    "connector": "mysql"
+    "connector": "loopback-connector-mysql"
   }
 }
