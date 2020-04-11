@@ -10,6 +10,7 @@ var dataSource = new DataSource({
   password: "masterhot1",
 });
 module.exports = function (Tbltickets) {
+  // ACTIVATE PACK
   Tbltickets.activateTicket = function (Game, Pack, Nbr, Emp_id, cb) {
     var sql =
       "CALL `activatePack`(" +
@@ -57,6 +58,7 @@ module.exports = function (Tbltickets) {
     http: { path: "/activateTicket", verb: "post" },
   });
 
+  // GET END DAY PREVIOUS DAY TICKETS
   Tbltickets.getEndDayPrevDayTickets = function (cb) {
     dataSource.connector.execute("CALL `getEndDayPrevDayTickets`();", function (
       err,
@@ -75,6 +77,7 @@ module.exports = function (Tbltickets) {
     http: { path: "/getEndDayPrevDayTickets", verb: "get" },
   });
 
+  // GET GAME
   Tbltickets.getGame = function (game, cb) {
     dataSource.connector.execute("CALL `getGame`(" + game + ");", function (
       err,
@@ -92,5 +95,25 @@ module.exports = function (Tbltickets) {
     accepts: { arg: "game", type: "string", required: "true" },
     returns: { arg: "result", type: "any", root: "true" },
     http: { path: "/getGame", verb: "get" },
+  });
+
+  // GET DAILY COUNTS PER GAME
+  Tbltickets.getDailyCounts = function (cb) {
+    dataSource.connector.execute("CALL `dailyCounts`();", function (err, data) {
+      if (err) {
+        console.log("Error:", err);
+      }
+      console.log("datum:", data);
+      cb(null, data);
+    });
+  };
+
+  Tbltickets.remoteMethod("getDailyCounts", {
+    returns: {
+      arg: "result",
+      type: [{ SUM: "any", Game: "any" }],
+      root: "true",
+    },
+    http: { path: "/getDailyCounts", verb: "get" },
   });
 };
