@@ -145,4 +145,100 @@ module.exports = function (Tbltickets) {
     returns: { arg: "result", type: "any", root: "true" },
     http: { path: "/deletePack", verb: "delete" },
   });
+
+  // SET END DAY TICKET
+  Tbltickets.setEndDayTicket = function (Game, Pack, Nbr, Emp_id, cb) {
+    var sql =
+      "CALL `endDayEmp`(" +
+      Game +
+      "," +
+      Pack +
+      ", " +
+      Nbr +
+      ", " +
+      Emp_id +
+      ");";
+    dataSource.connector.execute(sql, function (err, data) {
+      if (err) {
+        console.log("Error:", err);
+      }
+      console.log("datum:", data);
+      cb(null, data);
+    });
+  };
+
+  Tbltickets.remoteMethod("setEndDayTicket", {
+    accepts: [
+      {
+        arg: "Game",
+        type: "string",
+        required: "true",
+      },
+      {
+        arg: "Pack",
+        type: "string",
+        required: "true",
+      },
+      {
+        arg: "Nbr",
+        type: "string",
+        required: "true",
+      },
+      {
+        arg: "Emp_id",
+        type: "string",
+        required: "true",
+      },
+    ],
+    returns: { arg: "result", type: "any", root: "true" },
+    http: { path: "/setEndDayTicket", verb: "patch" },
+  });
+
+  // SET START DAY TICKET
+  Tbltickets.setStartDayTicket = function (Game, Pack, Nbr, Emp_id, cb) {
+    var sql =
+      "CALL `startDayEmp`(" +
+      Game +
+      "," +
+      Pack +
+      ", " +
+      Nbr +
+      ", " +
+      Emp_id +
+      ");";
+    dataSource.connector.execute(sql, function (err, data) {
+      if (err) {
+        console.log("Error:", err);
+      }
+      console.log("datum:", data);
+      cb(null, data);
+    });
+  };
+
+  Tbltickets.remoteMethod("setStartDayTicket", {
+    accepts: [
+      {
+        arg: "Game",
+        type: "string",
+        required: "true",
+      },
+      {
+        arg: "Pack",
+        type: "string",
+        required: "true",
+      },
+      {
+        arg: "Nbr",
+        type: "string",
+        required: "true",
+      },
+      {
+        arg: "Emp_id",
+        type: "string",
+        required: "true",
+      },
+    ],
+    returns: { arg: "result", type: "any", root: "true" },
+    http: { path: "/setStartDayTicket", verb: "patch" },
+  });
 };
