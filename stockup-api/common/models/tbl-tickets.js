@@ -116,4 +116,33 @@ module.exports = function (Tbltickets) {
     },
     http: { path: "/getDailyCounts", verb: "get" },
   });
+
+  // DELETE PACK
+  Tbltickets.deletePack = function (Game, Pack, cb) {
+    var sql = "CALL `deleteGamePack`(" + Game + "," + Pack + ");";
+    dataSource.connector.execute(sql, function (err, data) {
+      if (err) {
+        console.log("Error:", err);
+      }
+      console.log("datum:", data);
+      cb(null, data);
+    });
+  };
+
+  Tbltickets.remoteMethod("deletePack", {
+    accepts: [
+      {
+        arg: "Game",
+        type: "string",
+        required: "true",
+      },
+      {
+        arg: "Pack",
+        type: "string",
+        required: "true",
+      },
+    ],
+    returns: { arg: "result", type: "any", root: "true" },
+    http: { path: "/deletePack", verb: "delete" },
+  });
 };
