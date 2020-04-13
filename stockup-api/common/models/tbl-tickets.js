@@ -54,7 +54,7 @@ module.exports = function (Tbltickets) {
 
   // GET END DAY PREVIOUS DAY TICKETS
   Tbltickets.endDayPrevDayTickets = function (cb) {
-    dataSource.connector.execute("CALL `endDayPrevDayTickets`();", function (
+    dataSource.connector.execute("CALL `getEndDayPrevDayTickets`();", function (
       err,
       data
     ) {
@@ -121,7 +121,7 @@ module.exports = function (Tbltickets) {
   });
 
   // SET END DAY TICKET
-  Tbltickets.endDayTicket = function (Game, Pack, Nbr, Emp_id, cb) {
+  Tbltickets.endDayTicket = function ({ Game, Pack, Nbr, Emp_id }, cb) {
     var sql =
       "CALL `endDayEmp`(" +
       Game +
@@ -144,24 +144,17 @@ module.exports = function (Tbltickets) {
   Tbltickets.remoteMethod("endDayTicket", {
     accepts: [
       {
-        arg: "Game",
-        type: "string",
+        arg: "Ticket",
+        type: {
+          Game: "number",
+          Pack: "number",
+          Nbr: "number",
+          Emp_id: "number",
+        },
         required: "true",
-      },
-      {
-        arg: "Pack",
-        type: "string",
-        required: "true",
-      },
-      {
-        arg: "Nbr",
-        type: "string",
-        required: "true",
-      },
-      {
-        arg: "Emp_id",
-        type: "string",
-        required: "true",
+        http: {
+          source: "body",
+        },
       },
     ],
     returns: { arg: "result", type: "any", root: "true" },
@@ -169,7 +162,7 @@ module.exports = function (Tbltickets) {
   });
 
   // SET START DAY TICKET
-  Tbltickets.startDayTicket = function (Game, Pack, Nbr, Emp_id, cb) {
+  Tbltickets.startDayTicket = function ({ Game, Pack, Nbr, Emp_id }, cb) {
     var sql =
       "CALL `startDayEmp`(" +
       Game +
@@ -192,24 +185,17 @@ module.exports = function (Tbltickets) {
   Tbltickets.remoteMethod("startDayTicket", {
     accepts: [
       {
-        arg: "Game",
-        type: "string",
+        arg: "Ticket",
+        type: {
+          Game: "number",
+          Pack: "number",
+          Nbr: "number",
+          Emp_id: "number",
+        },
         required: "true",
-      },
-      {
-        arg: "Pack",
-        type: "string",
-        required: "true",
-      },
-      {
-        arg: "Nbr",
-        type: "string",
-        required: "true",
-      },
-      {
-        arg: "Emp_id",
-        type: "string",
-        required: "true",
+        http: {
+          source: "body",
+        },
       },
     ],
     returns: { arg: "result", type: "any", root: "true" },
