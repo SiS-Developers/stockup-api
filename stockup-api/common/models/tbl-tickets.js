@@ -158,7 +158,7 @@ module.exports = function (Tbltickets) {
       },
     ],
     returns: { arg: "result", type: "any", root: "true" },
-    http: { path: "/endDayTicket", verb: "patch" },
+    http: { path: "/endDayTicket", verb: "post" },
   });
 
   // SET START DAY TICKET
@@ -199,7 +199,7 @@ module.exports = function (Tbltickets) {
       },
     ],
     returns: { arg: "result", type: "any", root: "true" },
-    http: { path: "/startDayTicket", verb: "patch" },
+    http: { path: "/startDayTicket", verb: "post" },
   });
 
   // GET SPARE PACKS BY GAME NAME
