@@ -12,7 +12,7 @@ var dataSource = new DataSource({
 
 module.exports = function (Tbltickets) {
   // ACTIVATE PACK
-  Tbltickets.activateTicket = function (Game, Pack, Nbr, Emp_id, cb) {
+  Tbltickets.activateTicket = function ({ Game, Pack, Nbr, Emp_id }, cb) {
     var sql =
       "CALL `activatePack`(" +
       Game +
@@ -35,24 +35,17 @@ module.exports = function (Tbltickets) {
   Tbltickets.remoteMethod("activateTicket", {
     accepts: [
       {
-        arg: "Game",
-        type: "string",
+        arg: "Ticket",
+        type: {
+          Game: "number",
+          Pack: "number",
+          Nbr: "number",
+          Emp_id: "number",
+        },
         required: "true",
-      },
-      {
-        arg: "Pack",
-        type: "string",
-        required: "true",
-      },
-      {
-        arg: "Nbr",
-        type: "string",
-        required: "true",
-      },
-      {
-        arg: "Emp_id",
-        type: "string",
-        required: "true",
+        http: {
+          source: "body",
+        },
       },
     ],
     returns: { arg: "result", type: "any", root: "true" },
@@ -347,7 +340,10 @@ module.exports = function (Tbltickets) {
   });
 
   // SEED NEW GAME
-  Tbltickets.seedNewGame = function (Game, Pack, Nbr, Name, Price, Emp_id, cb) {
+  Tbltickets.seedNewGame = function (
+    { Game, Pack, Nbr, Name, Price, Emp_id },
+    cb
+  ) {
     var sql =
       "CALL `seedNewGame`(" +
       Game +
@@ -374,34 +370,19 @@ module.exports = function (Tbltickets) {
   Tbltickets.remoteMethod("seedNewGame", {
     accepts: [
       {
-        arg: "Game",
-        type: "number",
+        arg: "Ticket",
+        type: {
+          Game: "number",
+          Pack: "number",
+          Nbr: "number",
+          Name: "string",
+          Price: "number",
+          Emp_id: "number",
+        },
         required: "true",
-      },
-      {
-        arg: "Pack",
-        type: "number",
-        required: "true",
-      },
-      {
-        arg: "Nbr",
-        type: "number",
-        required: "true",
-      },
-      {
-        arg: "Name",
-        type: "string",
-        required: "true",
-      },
-      {
-        arg: "Price",
-        type: "number",
-        required: "true",
-      },
-      {
-        arg: "Emp_id",
-        type: "string",
-        required: "true",
+        http: {
+          source: "body",
+        },
       },
     ],
     returns: { arg: "result", type: "any", root: "true" },
@@ -409,7 +390,7 @@ module.exports = function (Tbltickets) {
   });
 
   // SEED EXISTING GAME
-  Tbltickets.seedExistingGame = function (Game, Pack, Nbr, Emp_id, cb) {
+  Tbltickets.seedExistingGame = function ({ Game, Pack, Nbr, Emp_id }, cb) {
     var sql =
       "CALL `seedExistingGame`(" +
       Game +
@@ -432,24 +413,17 @@ module.exports = function (Tbltickets) {
   Tbltickets.remoteMethod("seedExistingGame", {
     accepts: [
       {
-        arg: "Game",
-        type: "number",
+        arg: "Ticket",
+        type: {
+          Game: "number",
+          Pack: "number",
+          Nbr: "number",
+          Emp_id: "number",
+        },
         required: "true",
-      },
-      {
-        arg: "Pack",
-        type: "number",
-        required: "true",
-      },
-      {
-        arg: "Nbr",
-        type: "number",
-        required: "true",
-      },
-      {
-        arg: "Emp_id",
-        type: "string",
-        required: "true",
+        http: {
+          source: "body",
+        },
       },
     ],
     returns: { arg: "result", type: "any", root: "true" },
