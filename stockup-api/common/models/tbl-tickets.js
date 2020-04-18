@@ -92,7 +92,7 @@ module.exports = function (Tbltickets) {
   });
 
   // DELETE PACK
-  Tbltickets.pack = function (Game, Pack, cb) {
+  Tbltickets.pack = function ({ Game, Pack }, cb) {
     var sql = "CALL `deleteGamePack`(" + Game + "," + Pack + ");";
     dataSource.connector.execute(sql, function (err, data) {
       if (err) {
@@ -106,18 +106,19 @@ module.exports = function (Tbltickets) {
   Tbltickets.remoteMethod("pack", {
     accepts: [
       {
-        arg: "Game",
-        type: "string",
+        arg: "Ticket",
+        type: {
+          Game: "number",
+          Pack: "number",
+        },
         required: "true",
-      },
-      {
-        arg: "Pack",
-        type: "string",
-        required: "true",
+        http: {
+          source: "body",
+        },
       },
     ],
     returns: { arg: "result", type: "any", root: "true" },
-    http: { path: "/pack", verb: "delete" },
+    http: { path: "/pack", verb: "post" },
   });
 
   // SET END DAY TICKET
@@ -437,5 +438,24 @@ module.exports = function (Tbltickets) {
       root: "true",
     },
     http: { path: "/allGames", verb: "get" },
+  });
+
+  // GET INVENTORY
+  Tbltickets.inventoryTickets = function (cb) {
+    dataSource.connector.execute("CALL `getAllTickets`();", function (
+      err,
+      data
+    ) {
+      if (err) {
+        console.log("Error:", err);
+      }
+      console.log("datum:", data);
+      cb(null, data);
+    });
+  };
+
+  Tbltickets.remoteMethod("inventoryTickets", {
+    returns: { arg: "result", type: "any", root: "true" },
+    http: { path: "/inventoryTickets", verb: "get" },
   });
 };
