@@ -1,0 +1,5 @@
+applications:
+- name: stockup-api
+  hostname: https://stockup-api.us-south.cf.appdomain.cloud
+  instances: 1
+  memory: 256M
